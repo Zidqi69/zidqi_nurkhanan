@@ -1,0 +1,1668 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zidqi Nurkhanan — Agribisnis, Desain Grafis & Vibe Coding</title>
+  <meta name="description" content="Portofolio pribadi Zidqi Nurkhanan. Mahasiswa Agribisnis Universitas Terbuka yang menggabungkan keahlian pertanian modern, desain grafis, dan pengembangan web." />
+  <meta name="author" content="Zidqi Nurkhanan" />
+
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Zidqi Nurkhanan — Portofolio Pribadi" />
+  <meta property="og:description" content="Eksplorasi persimpangan antara Agribisnis Modern, Desain Visual, dan Pengembangan Web." />
+  <meta property="og:locale" content="id_ID" />
+
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ==========================================================================
+       1. VARIABEL & PENGATURAN DASAR (CUSTOM PROPERTIES)
+       Ubah --accent di sini untuk mengganti tema warna secara menyeluruh
+       ========================================================================== */
+    :root {
+      /* Dominan 60% Putih & Latar Terang */
+      --bg-base: #F5F5F7;
+      --bg-pure: #FFFFFF;
+
+      /* Sekunder 30% Abu Lembut & Teks */
+      --surface-gray: #E8E8ED;
+      --text-primary: #1D1D1F;
+      --text-secondary: #6E6E73;
+      --text-muted: #86868B;
+
+      /* Aksen 10% Hijau Pertanian Segar */
+      --accent: #2E9E5B;
+      --accent-hover: #25834B;
+      --accent-soft: rgba(46, 158, 91, 0.12);
+      --accent-glow: rgba(46, 158, 91, 0.25);
+
+      /* Efek Kaca (Glassmorphism) */
+      --glass-bg: rgba(255, 255, 255, 0.72);
+      --glass-bg-strong: rgba(255, 255, 255, 0.86);
+      --glass-border: rgba(255, 255, 255, 0.85);
+      --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.03);
+      --glass-shadow-hover: 0 18px 40px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(46, 158, 91, 0.08);
+
+      /* Radius & Transisi */
+      --pill: 9999px;
+      --card-radius: 28px;
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+      --transition: 0.35s var(--ease-out);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: var(--text-primary);
+      background-color: var(--bg-base);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      overflow-x: hidden;
+      line-height: 1.6;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button, input, textarea {
+      font-family: inherit;
+    }
+
+    /* ==========================================================================
+       2. LATAR BELAKANG MESH GRADIENT & BLOB BERGERAK HALUS
+       ========================================================================== */
+    .ambient-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      overflow: hidden;
+      pointer-events: none;
+      background: linear-gradient(180deg, #FFFFFF 0%, #F5F5F7 100%);
+    }
+
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: 0.55;
+      will-change: transform;
+    }
+
+    .blob-1 {
+      width: 480px;
+      height: 480px;
+      background: radial-gradient(circle, rgba(52, 199, 89, 0.28) 0%, rgba(52, 199, 89, 0) 70%);
+      top: -10%;
+      left: -8%;
+      animation: floatBlob1 22s ease-in-out infinite alternate;
+    }
+
+    .blob-2 {
+      width: 520px;
+      height: 520px;
+      background: radial-gradient(circle, rgba(168, 218, 255, 0.45) 0%, rgba(168, 218, 255, 0) 70%);
+      top: 28%;
+      right: -12%;
+      animation: floatBlob2 26s ease-in-out infinite alternate;
+    }
+
+    .blob-3 {
+      width: 440px;
+      height: 440px;
+      background: radial-gradient(circle, rgba(46, 158, 91, 0.18) 0%, rgba(46, 158, 91, 0) 70%);
+      bottom: -8%;
+      left: 18%;
+      animation: floatBlob3 24s ease-in-out infinite alternate;
+    }
+
+    @keyframes floatBlob1 {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(60px, 50px) scale(1.08); }
+    }
+
+    @keyframes floatBlob2 {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(-70px, 60px) scale(1.06); }
+    }
+
+    @keyframes floatBlob3 {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(50px, -40px) scale(1.1); }
+    }
+
+    /* ==========================================================================
+       3. KOMPONEN GLASSMORPHISM & FALLBACK
+       ========================================================================== */
+    .glass {
+      background: rgba(255, 255, 255, 0.92); /* Fallback browser lama */
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--glass-shadow);
+    }
+
+    @supports ((backdrop-filter: blur(24px)) or (-webkit-backdrop-filter: blur(24px))) {
+      .glass {
+        background: var(--glass-bg);
+        -webkit-backdrop-filter: blur(24px) saturate(160%);
+        backdrop-filter: blur(24px) saturate(160%);
+      }
+    }
+
+    /* ==========================================================================
+       4. FLOATING PILL NAVBAR (DESKTOP TOP & MOBILE BOTTOM BAR)
+       ========================================================================== */
+    .navbar-wrapper {
+      position: fixed;
+      top: 20px;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      padding: 0 16px;
+      pointer-events: none;
+    }
+
+    .navbar-pill {
+      pointer-events: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 8px 10px 8px 18px;
+      border-radius: var(--pill);
+      max-width: 820px;
+      width: 100%;
+      transition: padding var(--transition), transform var(--transition), box-shadow var(--transition);
+    }
+
+    .navbar-pill.scrolled {
+      padding: 6px 8px 6px 16px;
+      max-width: 760px;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08);
+    }
+
+    .brand-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 1.05rem;
+      letter-spacing: -0.03em;
+      color: var(--text-primary);
+      flex-shrink: 0;
+    }
+
+    .brand-badge {
+      width: 34px;
+      height: 34px;
+      border-radius: var(--pill);
+      background: var(--accent);
+      color: #FFFFFF;
+      display: grid;
+      place-items: center;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    /* Menu Navigasi Desktop dengan Sliding Active Pill */
+    .nav-links {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      list-style: none;
+    }
+
+    .nav-indicator {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      border-radius: var(--pill);
+      background: var(--accent-soft);
+      transition: transform 0.35s var(--ease-out), width 0.35s var(--ease-out), opacity 0.2s ease;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0;
+    }
+
+    .nav-link {
+      position: relative;
+      z-index: 1;
+      display: inline-block;
+      padding: 8px 15px;
+      border-radius: var(--pill);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      transition: color 0.25s ease;
+      white-space: nowrap;
+    }
+
+    .nav-link:hover {
+      color: var(--text-primary);
+    }
+
+    .nav-link.active {
+      color: var(--accent);
+    }
+
+    /* Tombol CTA Pill */
+    .btn-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: var(--pill);
+      font-size: 0.88rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: transform var(--transition), background-color var(--transition), box-shadow var(--transition);
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #FFFFFF;
+      box-shadow: 0 6px 18px var(--accent-glow);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px var(--accent-glow);
+    }
+
+    .btn-secondary {
+      background: var(--bg-pure);
+      color: var(--text-primary);
+      border: 1px solid var(--surface-gray);
+    }
+
+    .btn-secondary:hover {
+      background: #FAFAFC;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Mobile Floating Bottom Pill Bar */
+    .mobile-dock {
+      display: none;
+    }
+
+    /* ==========================================================================
+       5. LAYOUT CONTAINER & SECTION GENERAL
+       ========================================================================== */
+    .container {
+      width: 100%;
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    section {
+      padding: 96px 0;
+      scroll-margin-top: 90px;
+    }
+
+    .section-header {
+      margin-bottom: 48px;
+      max-width: 620px;
+    }
+
+    .section-pill-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: var(--pill);
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-size: clamp(1.85rem, 3.5vw, 2.5rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.18;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+    }
+
+    .section-desc {
+      font-size: 1.02rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    /* ==========================================================================
+       6. HERO SECTION
+       ========================================================================== */
+    .hero {
+      padding-top: 156px;
+      padding-bottom: 88px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      align-items: center;
+      gap: 48px;
+    }
+
+    .hero-greeting {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: var(--pill);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px var(--accent-soft);
+    }
+
+    .hero-title {
+      font-size: clamp(2.4rem, 5vw, 3.75rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .hero-title span {
+      color: var(--accent);
+    }
+
+    .hero-tagline {
+      font-size: clamp(1.02rem, 1.8vw, 1.18rem);
+      color: var(--text-secondary);
+      max-width: 540px;
+      margin-bottom: 32px;
+      line-height: 1.65;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .hero-actions .btn-pill {
+      padding: 13px 26px;
+      font-size: 0.95rem;
+    }
+
+    /* Foto Profil & Floating Chips */
+    .hero-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .profile-frame {
+      position: relative;
+      width: 290px;
+      height: 340px;
+      border-radius: 160px; /* Kapsul Vertikal / Pill */
+      padding: 10px;
+      background: var(--glass-bg-strong);
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.08);
+    }
+
+    .profile-img-wrap {
+      width: 100%;
+      height: 100%;
+      border-radius: 150px;
+      overflow: hidden;
+      background: linear-gradient(145deg, #E8F5ED 0%, #E8EEF5 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .profile-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Floating Chips */
+    .floating-chip {
+      position: absolute;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border-radius: var(--pill);
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      white-space: nowrap;
+      z-index: 2;
+    }
+
+    .chip-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: var(--pill);
+      background: var(--accent-soft);
+      color: var(--accent);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .chip-1 {
+      top: 22px;
+      left: -24px;
+      animation: chipFloat 5s ease-in-out infinite;
+    }
+
+    .chip-2 {
+      top: 52%;
+      right: -28px;
+      animation: chipFloat 6s ease-in-out infinite 1s;
+    }
+
+    .chip-3 {
+      bottom: 18px;
+      left: -12px;
+      animation: chipFloat 5.5s ease-in-out infinite 0.5s;
+    }
+
+    @keyframes chipFloat {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+
+    /* ==========================================================================
+       7. TENTANG SAYA & PENDIDIKAN
+       ========================================================================== */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .glass-card {
+      border-radius: var(--card-radius);
+      padding: 32px;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .glass-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--glass-shadow-hover);
+    }
+
+    .about-story p {
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+      font-size: 0.98rem;
+      line-height: 1.72;
+    }
+
+    .about-story p:last-child {
+      margin-bottom: 0;
+    }
+
+    .edu-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .edu-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .edu-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--pill);
+      background: var(--accent-soft);
+      color: var(--accent);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .edu-year {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: var(--pill);
+      background: var(--surface-gray);
+      color: var(--text-secondary);
+      font-size: 0.75rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .edu-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .edu-sub {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    /* ==========================================================================
+       8. KEAHLIAN (SKILLS)
+       ========================================================================== */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .skill-card-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .skill-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: var(--pill);
+      background: var(--accent-soft);
+      color: var(--accent);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .skill-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .skill-card p {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+      line-height: 1.55;
+    }
+
+    .pill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .skill-pill {
+      padding: 7px 14px;
+      border-radius: var(--pill);
+      background: var(--bg-pure);
+      border: 1px solid var(--surface-gray);
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      transition: all 0.25s ease;
+    }
+
+    .skill-pill:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    /* ==========================================================================
+       9. PROYEK (FILTER PILL & GRID KARTU)
+       ========================================================================== */
+    .filter-bar {
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 6px;
+      border-radius: var(--pill);
+      margin-bottom: 36px;
+    }
+
+    .filter-btn {
+      padding: 9px 18px;
+      border-radius: var(--pill);
+      border: none;
+      background: transparent;
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .filter-btn:hover {
+      color: var(--text-primary);
+    }
+
+    .filter-btn.active {
+      background: var(--accent);
+      color: #FFFFFF;
+      box-shadow: 0 4px 12px var(--accent-glow);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+
+    .project-card {
+      border-radius: var(--card-radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--glass-shadow-hover);
+    }
+
+    .project-thumb {
+      position: relative;
+      aspect-ratio: 16 / 10;
+      background: #E8ECEF;
+      overflow: hidden;
+    }
+
+    .project-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s var(--ease-out);
+    }
+
+    .project-card:hover .project-thumb img {
+      transform: scale(1.04);
+    }
+
+    .project-cat-badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      padding: 6px 14px;
+      border-radius: var(--pill);
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .project-body {
+      padding: 26px 28px 28px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .project-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    .project-desc {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      margin-bottom: 18px;
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .project-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding-top: 16px;
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .project-tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .mini-pill {
+      padding: 4px 10px;
+      border-radius: var(--pill);
+      background: var(--surface-gray);
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: var(--pill);
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 700;
+      transition: all 0.25s ease;
+    }
+
+    .project-link:hover {
+      background: var(--accent);
+      color: #FFFFFF;
+    }
+
+    /* ==========================================================================
+       10. KONTAK (CHIP SOSIAL & FORM WHATSAPP)
+       ========================================================================== */
+    .contact-card {
+      border-radius: 32px;
+      padding: 40px;
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    .contact-chips {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .contact-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 18px;
+      border-radius: var(--pill);
+      background: var(--bg-pure);
+      border: 1px solid var(--surface-gray);
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: all var(--transition);
+      width: fit-content;
+      max-width: 100%;
+    }
+
+    .contact-chip:hover {
+      border-color: var(--accent);
+      transform: translateX(4px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+    }
+
+    .contact-chip-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: var(--pill);
+      background: var(--accent-soft);
+      color: var(--accent);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .wa-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-group label {
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      padding-left: 12px;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 13px 18px;
+      border-radius: 20px;
+      border: 1px solid var(--surface-gray);
+      background: rgba(255, 255, 255, 0.85);
+      font-size: 0.92rem;
+      color: var(--text-primary);
+      outline: none;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    input.form-control {
+      border-radius: var(--pill);
+    }
+
+    .form-control:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px var(--accent-soft);
+      background: #FFFFFF;
+    }
+
+    .form-error {
+      font-size: 0.78rem;
+      color: #D93025;
+      padding-left: 14px;
+      display: none;
+    }
+
+    .form-group.invalid .form-control {
+      border-color: #D93025;
+    }
+
+    .form-group.invalid .form-error {
+      display: block;
+    }
+
+    /* ==========================================================================
+       11. FOOTER MINIMALIS
+       ========================================================================== */
+    footer {
+      padding: 36px 0 48px;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      padding-top: 24px;
+      border-top: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .copyright {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    /* ==========================================================================
+       12. ANIMASI REVEAL ON SCROLL (INTERSECTION OBSERVER)
+       ========================================================================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ==========================================================================
+       13. RESPONSIVE BREAKPOINTS (TABLET & MOBILE 360px+)
+       ========================================================================== */
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 44px;
+      }
+
+      .hero-tagline {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-actions {
+        justify-content: center;
+      }
+
+      .about-grid,
+      .contact-card {
+        grid-template-columns: 1fr;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      /* Sembunyikan menu link & CTA di top pill pada mobile, sisakan brand ringkas */
+      .navbar-wrapper {
+        top: 14px;
+      }
+
+      .navbar-pill {
+        width: auto;
+        padding: 7px 16px 7px 10px;
+      }
+
+      .nav-links,
+      .nav-cta-desktop {
+        display: none;
+      }
+
+      /* Tampilkan Floating Pill Bottom Dock untuk navigasi ibu jari */
+      .mobile-dock {
+        position: fixed;
+        bottom: 16px;
+        left: 12px;
+        right: 12px;
+        z-index: 1000;
+        display: flex;
+        justify-content: center;
+        pointer-events: none;
+      }
+
+      .mobile-dock-pill {
+        pointer-events: auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width: 100%;
+        max-width: 420px;
+        padding: 6px;
+        border-radius: var(--pill);
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+      }
+
+      .dock-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2px;
+        padding: 6px 10px;
+        border-radius: var(--pill);
+        font-size: 0.68rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        transition: all 0.25s ease;
+        flex: 1;
+      }
+
+      .dock-item.active {
+        background: var(--accent-soft);
+        color: var(--accent);
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 104px;
+        padding-bottom: 64px;
+      }
+
+      section {
+        padding: 72px 0;
+      }
+
+      .profile-frame {
+        width: 240px;
+        height: 285px;
+      }
+
+      .chip-1 { left: -10px; top: 14px; }
+      .chip-2 { right: -12px; }
+      .chip-3 { left: -6px; bottom: 12px; }
+
+      .contact-card {
+        padding: 26px 20px;
+      }
+
+      footer {
+        padding-bottom: 96px; /* Ruang ekstra agar tidak tertutup bottom dock */
+      }
+    }
+
+    /* ==========================================================================
+       14. AKSESIBILITAS: PREFERS-REDUCED-MOTION
+       ========================================================================== */
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Latar Belakang Ambient Mesh -->
+  <div class="ambient-bg" aria-hidden="true">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <!-- ========================================================================
+       NAVBAR FLOATING PILL (TOP)
+       ======================================================================== -->
+  <header class="navbar-wrapper">
+    <nav class="navbar-pill glass" id="navbar" aria-label="Navigasi Utama">
+      <a href="#beranda" class="brand-logo" aria-label="Beranda Zidqi Nurkhanan">
+        <span class="brand-badge">ZN</span>
+        <span>Zidqi</span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <div class="nav-indicator" id="navIndicator" aria-hidden="true"></div>
+        <li><a href="#beranda" class="nav-link active" data-section="beranda">Beranda</a></li>
+        <li><a href="#tentang" class="nav-link" data-section="tentang">Tentang</a></li>
+        <li><a href="#keahlian" class="nav-link" data-section="keahlian">Keahlian</a></li>
+        <li><a href="#proyek" class="nav-link" data-section="proyek">Proyek</a></li>
+        <li><a href="#kontak" class="nav-link" data-section="kontak">Kontak</a></li>
+      </ul>
+
+      <a href="#kontak" class="btn-pill btn-primary nav-cta-desktop">Hubungi Saya</a>
+    </nav>
+  </header>
+
+  <!-- ========================================================================
+       FLOATING PILL BOTTOM BAR (KHUSUS MOBILE)
+       ======================================================================== -->
+  <nav class="mobile-dock" aria-label="Navigasi Mobile">
+    <div class="mobile-dock-pill glass">
+      <a href="#beranda" class="dock-item active" data-section="beranda">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <span>Beranda</span>
+      </a>
+      <a href="#tentang" class="dock-item" data-section="tentang">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg>
+        <span>Tentang</span>
+      </a>
+      <a href="#keahlian" class="dock-item" data-section="keahlian">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <span>Keahlian</span>
+      </a>
+      <a href="#proyek" class="dock-item" data-section="proyek">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
+        <span>Proyek</span>
+      </a>
+      <a href="#kontak" class="dock-item" data-section="kontak">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <span>Kontak</span>
+      </a>
+    </div>
+  </nav>
+
+  <main>
+    <!-- ======================================================================
+         1. HERO SECTION
+         ====================================================================== -->
+    <section id="beranda" class="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="reveal">
+            <div class="hero-greeting glass">
+              <span class="status-dot" aria-hidden="true"></span>
+              <span>Halo, saya Zidqi Nurkhanan</span>
+            </div>
+
+            <h1 class="hero-title">
+              Merancang Solusi <span>Agribisnis</span>, Visual &amp; Digital.
+            </h1>
+
+            <p class="hero-tagline">
+              Mahasiswa Agribisnis Universitas Terbuka yang menjembatani manajemen pertanian modern, desain grafis fungsional, dan pengembangan web cepat berbasis <em>vibe coding</em>.
+            </p>
+
+            <div class="hero-actions">
+              <a href="#proyek" class="btn-pill btn-primary">
+                <span>Lihat Proyek</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+              <a href="#kontak" class="btn-pill btn-secondary">Hubungi Saya</a>
+            </div>
+          </div>
+
+          <!-- Kolom Kanan: Foto Profil Pill + Floating Chips -->
+          <div class="hero-visual reveal">
+            <div class="floating-chip chip-1 glass">
+              <span class="chip-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+              </span>
+              <span>Agribisnis</span>
+            </div>
+
+            <div class="floating-chip chip-2 glass">
+              <span class="chip-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/></svg>
+              </span>
+              <span>Desain Grafis</span>
+            </div>
+
+            <div class="floating-chip chip-3 glass">
+              <span class="chip-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              </span>
+              <span>Vibe Coding</span>
+            </div>
+
+            <div class="profile-frame">
+              <div class="profile-img-wrap">
+                <!-- ============================================================
+                     [GANTI FOTO PROFIL DI SINI]
+                     Ganti atribut src di bawah dengan path file foto Anda,
+                     contoh: src="foto-zidqi.jpg"
+                     ============================================================ -->
+                <img
+                  src="image\zidqi.png"
+                  alt="Foto Profil Zidqi Nurkhanan"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         2. TENTANG SAYA & PENDIDIKAN
+         ====================================================================== -->
+    <section id="tentang">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-pill-label">Tentang Saya</span>
+          <h2 class="section-title">Pendekatan Lintas Disiplin untuk Inovasi Pertanian</h2>
+          <p class="section-desc">Memadukan pemahaman teknis budidaya dan ekonomi pertanian dengan komunikasi visual yang tajam serta alat digital praktis.</p>
+        </div>
+
+        <div class="about-grid">
+          <article class="glass-card glass about-story reveal">
+            <p>
+              Saya <strong>Zidqi Nurkhanan</strong>, seorang mahasiswa program studi <strong>Agribisnis di Universitas Terbuka</strong> dengan latar belakang pendidikan vokasi pertanian dari <strong>SMK Al-Falah Moga</strong>.
+            </p>
+            <p>
+              Ketertarikan saya berfokus pada bagaimana sektor agribisnis dapat tampil lebih profesional dan efisien melalui identitas merek yang kuat, media promosi yang terukur, serta aplikasi web sederhana untuk perhitungan usaha tani maupun manajemen lahan.
+            </p>
+            <p>
+              Dengan kombinasi desain grafis dan pengembangan web modern, saya membantu mengubah ide kompleks menjadi produk visual maupun digital yang rapi dan siap digunakan.
+            </p>
+          </article>
+
+          <div class="edu-stack reveal">
+            <div class="glass-card glass edu-item">
+              <div class="edu-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+              </div>
+              <div>
+                <span class="edu-year">Sekarang</span>
+                <h3 class="edu-title">Universitas Terbuka</h3>
+                <p class="edu-sub">S1 Agribisnis — Fokus pada manajemen usaha tani, ekonomi pertanian, dan penyuluhan modern.</p>
+              </div>
+            </div>
+
+            <div class="glass-card glass edu-item">
+              <div class="edu-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+              </div>
+              <div>
+                <span class="edu-year">Lulus 2026</span>
+                <h3 class="edu-title">SMK Al-Falah Moga</h3>
+                <p class="edu-sub">Jurusan Agribisnis Tanaman Pangan dan Hortikultura (ATPH) — Praktik budidaya lapangan &amp; perencanaan produksi.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         3. KEAHLIAN (3 KARTU GLASS + PILL TAGS)
+         ====================================================================== -->
+    <section id="keahlian">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-pill-label">Keahlian &amp; Perangkat</span>
+          <h2 class="section-title">Tiga Pilar Kemampuan Utama</h2>
+          <p class="section-desc">Perangkat lunak dan kompetensi lapangan yang saya gunakan sehari-hari untuk mengeksekusi proyek.</p>
+        </div>
+
+        <div class="skills-grid">
+          <!-- Kartu 1: Desain Grafis -->
+          <div class="glass-card glass skill-card reveal">
+            <div class="skill-card-head">
+              <div class="skill-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg>
+              </div>
+              <h3>Desain Grafis</h3>
+            </div>
+            <p>Perancangan identitas visual, materi promosi cetak maupun digital, serta antarmuka pengguna.</p>
+            <div class="pill-tags">
+              <span class="skill-pill">CorelDRAW</span>
+              <span class="skill-pill">Photoshop</span>
+              <span class="skill-pill">Canva</span>
+              <span class="skill-pill">Figma</span>
+              <span class="skill-pill">Affinity</span>
+            </div>
+          </div>
+
+          <!-- Kartu 2: Vibe Coding -->
+          <div class="glass-card glass skill-card reveal">
+            <div class="skill-card-head">
+              <div class="skill-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              </div>
+              <h3>Vibe Coding</h3>
+            </div>
+            <p>Pembuatan aplikasi web fungsional, landing page interaktif, dan kalkulator bisnis secara cepat.</p>
+            <div class="pill-tags">
+              <span class="skill-pill">Antigravity</span>
+              <span class="skill-pill">VS Code</span>
+              <span class="skill-pill">HTML / CSS / JS</span>
+              <span class="skill-pill">UI Prototyping</span>
+            </div>
+          </div>
+
+          <!-- Kartu 3: Pertanian & Manajemen -->
+          <div class="glass-card glass skill-card reveal">
+            <div class="skill-card-head">
+              <div class="skill-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              </div>
+              <h3>Pertanian &amp; Manajemen</h3>
+            </div>
+            <p>Analisis kelayakan usaha tani, perencanaan budidaya hortikultura, dan pengelolaan rantai pasok.</p>
+            <div class="pill-tags">
+              <span class="skill-pill">Budidaya Hortikultura</span>
+              <span class="skill-pill">Perhitungan RAB Tani</span>
+              <span class="skill-pill">Manajemen Agribisnis</span>
+              <span class="skill-pill">Pupuk Organik</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         4. PROYEK (FILTER PILL + DYNAMIC GRID)
+         ====================================================================== -->
+    <section id="proyek">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-pill-label">Karya Pilihan</span>
+          <h2 class="section-title">Proyek &amp; Eksplorasi</h2>
+          <p class="section-desc">Kumpulan karya yang mencakup sistem digital agribisnis, desain visual, dan perencanaan usaha tani.</p>
+        </div>
+
+        <!-- Filter Pill -->
+        <div class="filter-bar glass reveal" role="tablist" aria-label="Filter Kategori Proyek">
+          <button class="filter-btn active" data-filter="Semua" role="tab" aria-selected="true">Semua</button>
+          <button class="filter-btn" data-filter="Web App" role="tab" aria-selected="false">Web App</button>
+          <button class="filter-btn" data-filter="Desain" role="tab" aria-selected="false">Desain</button>
+          <button class="filter-btn" data-filter="Pertanian" role="tab" aria-selected="false">Pertanian</button>
+        </div>
+
+        <!-- Grid Kartu Proyek (Dirender otomatis via JavaScript) -->
+        <div class="projects-grid" id="projectsGrid"></div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         5. KONTAK (CHIP SOSIAL & FORM WHATSAPP)
+         ====================================================================== -->
+    <section id="kontak">
+      <div class="container">
+        <div class="contact-card glass reveal">
+          <div>
+            <span class="section-pill-label">Mari Terhubung</span>
+            <h2 class="section-title">Punya Ide Proyek atau Diskusi?</h2>
+            <p class="section-desc">
+              Terbuka untuk kolaborasi desain grafis, pembuatan website landing page, maupun diskusi seputar pengembangan agribisnis.
+            </p>
+
+            <div class="contact-chips">
+              <a href="https://wa.me/6282220185254" target="_blank" rel="noopener noreferrer" class="contact-chip">
+                <span class="contact-chip-icon" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                </span>
+                <span>0822 2018 5254</span>
+              </a>
+
+              <a href="https://instagram.com/zidqi_nurkhanan" target="_blank" rel="noopener noreferrer" class="contact-chip">
+                <span class="contact-chip-icon" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                </span>
+                <span>@zidqi_nurkhanan</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Form Kirim Pesan Langsung ke WhatsApp -->
+          <form class="wa-form" id="waForm" novalidate>
+            <div class="form-group" id="groupNama">
+              <label for="inputNama">Nama Lengkap</label>
+              <input type="text" id="inputNama" class="form-control" placeholder="Masukkan nama Anda" required />
+              <span class="form-error">Nama wajib diisi minimal 2 karakter.</span>
+            </div>
+
+            <div class="form-group" id="groupTopik">
+              <label for="inputTopik">Keperluan / Topik</label>
+              <input type="text" id="inputTopik" class="form-control" placeholder="Contoh: Desain Banner / Website / Konsultasi" required />
+              <span class="form-error">Mohon isi topik keperluan Anda.</span>
+            </div>
+
+            <div class="form-group" id="groupPesan">
+              <label for="inputPesan">Pesan</label>
+              <textarea id="inputPesan" class="form-control" rows="4" placeholder="Tuliskan detail singkat pesan Anda..." required></textarea>
+              <span class="form-error">Pesan tidak boleh kosong.</span>
+            </div>
+
+            <button type="submit" class="btn-pill btn-primary" style="padding: 14px 24px; width: 100%;">
+              <span>Kirim ke WhatsApp</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================================
+       6. FOOTER MINIMALIS
+       ======================================================================== -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <p class="copyright">&copy; <span id="yearNow"></span> Zidqi Nurkhanan. Dirancang dengan prinsip Floating Pill.</p>
+        <a href="#beranda" class="btn-pill btn-secondary" aria-label="Kembali ke bagian atas halaman">
+          <span>Kembali ke atas</span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="18 15 12 9 6 15"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       JAVASCRIPT: DATA PROYEK, FILTER, SLIDING PILL SCROLL-SPY, & VALIDASI WA
+       ======================================================================== -->
+  <script>
+    /* ------------------------------------------------------------------------
+       1. DATA PROYEK (MUDAH DIEDIT)
+       - category: pilih antara 'Web App', 'Desain', atau 'Pertanian'
+       - image: ganti dengan path gambar asli Anda, misal 'assets/proyek1.jpg'
+       - link: ganti dengan URL demo/Behance/GitHub Anda (gunakan '#kontak' jika belum dipublikasi)
+       ------------------------------------------------------------------------ */
+    const PROJECTS_DATA = [
+      {
+        title: "AgroPlan Pro — Kalkulator RAB & Lahan",
+        category: "Web App",
+        description: "Aplikasi web berbasis browser untuk membantu petani menghitung Rencana Anggaran Biaya (RAB), populasi tanaman per hektar, serta pencatatan arus kas panen secara praktis.",
+        tools: ["HTML/JS", "Vibe Coding", "Agribisnis"],
+        image: "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='400' viewBox='0 0 640 400'%3E%3Crect width='640' height='400' fill='%23E7F5EC'/%3E%3Crect x='60' y='55' width='520' height='290' rx='24' fill='%23FFFFFF'/%3E%3Crect x='92' y='90' width='180' height='18' rx='9' fill='%232E9E5B'/%3E%3Crect x='92' y='125' width='280' height='12' rx='6' fill='%23D2D2D7'/%3E%3Crect x='92' y='170' width='210' height='130' rx='16' fill='%23F5F5F7'/%3E%3Crect x='322' y='170' width='226' height='130' rx='16' fill='%23E7F5EC'/%3E%3Ctext x='320' y='378' font-family='sans-serif' font-size='13' font-weight='600' fill='%232E9E5B' text-anchor='middle'%3E[Placeholder Gambar Proyek 1 — Ganti dengan Screenshot]%3C/text%3E%3C/svg%3E",
+        link: "#kontak",
+        linkText: "Tanya Demo"
+      },
+      {
+        title: "Identitas Visual & Landing Page Vantara Desain",
+        category: "Desain",
+        description: "Perancangan sistem branding, katalog layanan desain grafis, serta halaman web portofolio dengan integrasi pemesanan cepat langsung ke WhatsApp.",
+        tools: ["CorelDRAW", "Figma", "VS Code"],
+        image: "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='400' viewBox='0 0 640 400'%3E%3Crect width='640' height='400' fill='%23E8EEF6'/%3E%3Ccircle cx='220' cy='200' r='95' fill='%232E9E5B' fill-opacity='0.2'/%3E%3Ccircle cx='400' cy='200' r='95' fill='%231D1D1F' fill-opacity='0.08'/%3E%3Crect x='170' y='182' width='300' height='36' rx='18' fill='%23FFFFFF'/%3E%3Ctext x='320' y='378' font-family='sans-serif' font-size='13' font-weight='600' fill='%234A5568' text-anchor='middle'%3E[Placeholder Gambar Proyek 2 — Ganti dengan Karya Desain]%3C/text%3E%3C/svg%3E",
+        link: "#kontak",
+        linkText: "Lihat Detail"
+      },
+      {
+        title: "Perencanaan Usaha Tani Tomat Lahan 200 m²",
+        category: "Pertanian",
+        description: "Proposal bisnis dan SOP budidaya hortikultura intensif meliputi persiapan bedengan, formulasi pemupukan berimbang, pengendalian hama terpadu, hingga analisis titik impas (BEP).",
+        tools: ["ATPH", "Analisis BEP", "Manajemen Lahan"],
+        image: "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='400' viewBox='0 0 640 400'%3E%3Crect width='640' height='400' fill='%23EDF6E5'/%3E%3Cpath d='M160 280 C220 140, 420 140, 480 280 Z' fill='%232E9E5B' fill-opacity='0.25'/%3E%3Ccircle cx='320' cy='155' r='36' fill='%232E9E5B' fill-opacity='0.4'/%3E%3Ctext x='320' y='378' font-family='sans-serif' font-size='13' font-weight='600' fill='%232E9E5B' text-anchor='middle'%3E[Placeholder Gambar Proyek 3 — Ganti dengan Foto Lahan]%3C/text%3E%3C/svg%3E",
+        link: "#kontak",
+        linkText: "Diskusi Konsep"
+      },
+      {
+        title: "Materi Promosi & Kemasan Produk UMKM Lokal",
+        category: "Desain",
+        description: "Desain spanduk komersial, stiker label kemasan, dan konten media sosial yang mengutamakan keterbacaan tipografi serta hierarki informasi yang bersih.",
+        tools: ["CorelDRAW", "Photoshop", "Canva"],
+        image: "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='400' viewBox='0 0 640 400'%3E%3Crect width='640' height='400' fill='%23F2F0EC'/%3E%3Crect x='140' y='80' width='360' height='220' rx='28' fill='%23FFFFFF'/%3E%3Crect x='180' y='125' width='140' height='22' rx='11' fill='%232E9E5B' fill-opacity='0.8'/%3E%3Crect x='180' y='165' width='260' height='14' rx='7' fill='%23D2D2D7'/%3E%3Crect x='180' y='192' width='200' height='14' rx='7' fill='%23E5E5EA'/%3E%3Ctext x='320' y='378' font-family='sans-serif' font-size='13' font-weight='600' fill='%236E6E73' text-anchor='middle'%3E[Placeholder Gambar Proyek 4 — Ganti dengan Mockup]%3C/text%3E%3C/svg%3E",
+        link: "#kontak",
+        linkText: "Pesan Desain"
+      }
+    ];
+
+    /* ------------------------------------------------------------------------
+       2. RENDER KARTU PROYEK & FILTER KATEGORI
+       ------------------------------------------------------------------------ */
+    const projectsGrid = document.getElementById('projectsGrid');
+    const filterButtons = document.querySelectorAll('.filter-btn');
+
+    function renderProjects(filter = 'Semua') {
+      const filtered = filter === 'Semua'
+        ? PROJECTS_DATA
+        : PROJECTS_DATA.filter(item => item.category === filter);
+
+      projectsGrid.innerHTML = filtered.map(project => `
+        <article class="project-card glass reveal visible">
+          <div class="project-thumb">
+            <img src="${project.image}" alt="${project.title}" loading="lazy" />
+            <span class="project-cat-badge glass">${project.category}</span>
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">${project.title}</h3>
+            <p class="project-desc">${project.description}</p>
+            <div class="project-footer">
+              <div class="project-tools">
+                ${project.tools.map(t => `<span class="mini-pill">${t}</span>`).join('')}
+              </div>
+              <a href="${project.link}" class="project-link">
+                <span>${project.linkText}</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach(b => {
+          b.classList.remove('active');
+          b.setAttribute('aria-selected', 'false');
+        });
+        btn.classList.add('active');
+        btn.setAttribute('aria-selected', 'true');
+        renderProjects(btn.dataset.filter);
+      });
+    });
+
+    // Render awal semua proyek
+    renderProjects('Semua');
+
+    /* ------------------------------------------------------------------------
+       3. SLIDING ACTIVE PILL INDICATOR & SCROLL-SPY NAVBAR
+       ------------------------------------------------------------------------ */
+    const navbar = document.getElementById('navbar');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const dockItems = document.querySelectorAll('.dock-item');
+    const navIndicator = document.getElementById('navIndicator');
+    const sections = document.querySelectorAll('main section');
+
+    function moveIndicator(activeEl) {
+      if (!activeEl || !navIndicator || window.innerWidth <= 720) return;
+      navIndicator.style.opacity = '1';
+      navIndicator.style.width = `${activeEl.offsetWidth}px`;
+      navIndicator.style.transform = `translateX(${activeEl.offsetLeft}px)`;
+    }
+
+    function setActiveSection(sectionId) {
+      let activeDesktopLink = null;
+
+      navLinks.forEach(link => {
+        const isMatch = link.dataset.section === sectionId;
+        link.classList.toggle('active', isMatch);
+        if (isMatch) activeDesktopLink = link;
+      });
+
+      dockItems.forEach(item => {
+        item.classList.toggle('active', item.dataset.section === sectionId);
+      });
+
+      if (activeDesktopLink) {
+        moveIndicator(activeDesktopLink);
+      }
+    }
+
+    // Efek mengecil pada navbar saat scroll + deteksi section aktif
+    function handleScroll() {
+      navbar.classList.toggle('scrolled', window.scrollY > 40);
+
+      let currentSection = 'beranda';
+      const scrollPosition = window.scrollY + 220;
+
+      sections.forEach(sec => {
+        if (scrollPosition >= sec.offsetTop) {
+          currentSection = sec.id;
+        }
+      });
+
+      setActiveSection(currentSection);
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', () => {
+      const currentActive = document.querySelector('.nav-link.active');
+      moveIndicator(currentActive);
+    });
+
+    // Inisialisasi posisi indikator saat halaman selesai dimuat
+    window.addEventListener('load', () => {
+      const initialActive = document.querySelector('.nav-link.active');
+      moveIndicator(initialActive);
+    });
+
+    /* ------------------------------------------------------------------------
+       4. ANIMASI REVEAL ON SCROLL (INTERSECTION OBSERVER)
+       ------------------------------------------------------------------------ */
+    const revealElements = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      revealElements.forEach(el => observer.observe(el));
+    } else {
+      revealElements.forEach(el => el.classList.add('visible'));
+    }
+
+    /* ------------------------------------------------------------------------
+       5. VALIDASI FORM & KIRIM KE WHATSAPP
+       ------------------------------------------------------------------------ */
+    const waForm = document.getElementById('waForm');
+    const inputNama = document.getElementById('inputNama');
+    const inputTopik = document.getElementById('inputTopik');
+    const inputPesan = document.getElementById('inputPesan');
+
+    function validateField(input, groupEl, minLength = 1) {
+      const isValid = input.value.trim().length >= minLength;
+      groupEl.classList.toggle('invalid', !isValid);
+      return isValid;
+    }
+
+    waForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const validNama = validateField(inputNama, document.getElementById('groupNama'), 2);
+      const validTopik = validateField(inputTopik, document.getElementById('groupTopik'), 2);
+      const validPesan = validateField(inputPesan, document.getElementById('groupPesan'), 3);
+
+      if (!validNama || !validTopik || !validPesan) return;
+
+      const nama = inputNama.value.trim();
+      const topik = inputTopik.value.trim();
+      const pesan = inputPesan.value.trim();
+
+      const textWA = `Halo Zidqi, perkenalkan saya *${nama}*.\n\n*Keperluan:* ${topik}\n*Pesan:* ${pesan}`;
+      const waUrl = `https://wa.me/6282220185254?text=${encodeURIComponent(textWA)}`;
+
+      window.open(waUrl, '_blank', 'noopener,noreferrer');
+    });
+
+    // Hapus status error saat pengguna mulai mengetik ulang
+    [
+      [inputNama, 'groupNama', 2],
+      [inputTopik, 'groupTopik', 2],
+      [inputPesan, 'groupPesan', 3]
+    ].forEach(([input, groupId, min]) => {
+      input.addEventListener('input', () => {
+        const group = document.getElementById(groupId);
+        if (group.classList.contains('invalid')) {
+          validateField(input, group, min);
+        }
+      });
+    });
+
+    // Tahun otomatis di footer
+    document.getElementById('yearNow').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
